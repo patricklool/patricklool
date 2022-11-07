@@ -1,0 +1,54 @@
+getgenv().VelocityChanger = true
+getgenv().Velocity = Vector3.new(200,700,200)
+getgenv().KeyBind = "C"
+
+
+--// main scapt | realkscapter... omg
+local Players     = game:GetService("Players")
+local RunService  = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+
+local LocalPlayer = Players.LocalPlayer
+local Character   = LocalPlayer.Character
+local RootPart    = Character:FindFirstChild("HumanoidRootPart")
+
+
+local Heartbeat, RStepped, Stepped = RunService.Heartbeat, RunService.RenderStepped, RunService.Stepped
+
+LocalPlayer.CharacterAdded:Connect(function(NewCharacter)
+    Character = NewCharacter
+end)
+
+local RVelocity, YVelocity = nil, 0.1
+
+
+
+UIS.InputBegan:Connect(function(input)
+if not (UIS:GetFocusedTextBox()) then
+    if input.KeyCode == Enum.KeyCode[KeyBind] then
+        if VelocityChanger then
+            VelocityChanger = false
+        else
+            VelocityChanger = true
+            task.spawn(function()
+                    while VelocityChanger do
+                        print("Running")
+                        --// this a dumb check asnilsadsa
+                        if (not RootPart) or (not RootPart.Parent) or (not RootPart.Parent.Parent) then
+                            repeat task.wait() RootPart = Character:FindFirstChild("HumanoidRootPart") until RootPart ~= nil
+                        else
+                            RVelocity = RootPart.Velocity
+
+                            RootPart.Velocity = type(Velocity) == "vector" and Velocity or Velocity(RVelocity)
+
+                            RStepped:wait()
+
+                            RootPart.Velocity = RVelocity
+                        end
+                    Heartbeat:wait()
+                end
+            end)
+        end
+        end
+    end
+end)
