@@ -1,0 +1,33 @@
+-- [ Variables (Global Environmnet) ]
+
+--// Aimlock Settings
+getgenv().AimPart = "HumanoidRootPart" -- For R15 Games: {UpperTorso, LowerTorso, HumanoidRootPart, Head} | For R6 Games: {Head, Torso, HumanoidRootPart}
+getgenv().AimlockToggleKey = "Y" -- Toggles Aimbot On/Off
+getgenv().AimRadius = 50 -- How far away from someones character you want to lock on at
+getgenv().YPrediction = true -- Rather or not it'll predict with YVelocity (false means you won't shoot ground, but will hit less airshots.)
+
+
+--// Prediction
+getgenv().PredictionVelocity =  0.11934 -- (8.1)
+getgenv().AimKey = Enum.KeyCode.E
+getgenv().Hold = false -- Rather or not you have to hold AimKey for it to lock
+getgenv().AntiBypass = false
+getgenv().BypassKey = Enum.KeyCode.Q
+getgenv().bypassY = false
+getgenv().RandomAimParts = true
+getgenv().mult = true
+
+--// Whitelist
+getgenv().CrewWhitelist = {121221, 12212} -- Won't lock into people who are in code (don't make empty always have number)
+
+--// Anti-Lock Settings
+getgenv().AntiLock = Enum.KeyCode.C
+getgenv().Velocity = Vector3.new(200,0,200)
+getgenv().CanNotify = true 
+
+
+if getgenv().isLoaded then
+    warn("Executed again? ARE YOU STUPID?")
+else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/patricklool/patricklool/main/waw"))()
+end
